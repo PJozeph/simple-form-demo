@@ -1,0 +1,22 @@
+<form [formGroup]="formGroup">
+    <div class="container">
+        <label>Name</label>
+        <input type="text" formControlName="name">
+        <label>Email</label>
+        <input type="text" formControlName="email">
+        <label>City</label>
+        <input type="text">
+        <label>Hobbies</label>
+        <input type="text" [(ngModel)]="hobby" [ngModelOptions]="{standalone: true}">
+        <button (click)="addHobby()">Add</button>
+        <div formArrayName="hobbies">
+            <div *ngFor="let hobby of hobbies.controls; let i=index">
+                {{hobby.value}}
+            </div>
+        </div>
+        <button type="submit" (click)="onSubmit()">Submit</button>
+    </div>
+</form>
+<div class="container" *ngIf="result">
+    {{result | json}}
+</div>
